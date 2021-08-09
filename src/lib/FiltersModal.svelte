@@ -203,7 +203,7 @@
 		transition: border 250ms, color 250ms, background 250ms;
 
 
-		&:hover {
+		&:hover, &:active, &:focus {
 			background: v(primary);
 			color: white;
 			border: 1px solid primary;
@@ -224,7 +224,7 @@
 				class="search-container__input"
 				placeholder="🔍 Search Filters ({opSystemText} + F)"
 				bind:value={filterSearch} />
-			<button class="badge" on:click={() => dispatch('closeModal')}>Esc</button>
+			<button class="badge" on:click={() => dispatch('closeModal')} tabindex=0>Esc</button>
 		</div>
 
 		{#each filteredTags as tag, index (tag)}

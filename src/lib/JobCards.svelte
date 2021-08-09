@@ -192,7 +192,7 @@
 	}
 </style>
 
-<section class="job-cards">
+<section class="job-cards" title="Job Cards Section">
 	{#each dataObject as job, index (job)}
 		<article
 			class="job-card"
@@ -204,7 +204,7 @@
 				<img src="assets/images/{job.logo}" alt="" class="job-card__image" />
 			</div>
 
-			<section class="job-info">
+			<section class="job-info" title="Job Info Section for {job.company}">
 				<div class="job-info__top">
 					<h2 class="job-info__top-company">{job.company}</h2>
 					{#if job.new}
@@ -226,7 +226,7 @@
 				</div>
 			</section>
 
-			<section class="tags">
+			<section class="tags" title="Job Tags Section for {job.company}">
 				<p class="tag" on:click={() => dispatch('addFilterTag', job.role)}>{job.role}</p>
 				<p class="tag" on:click={() => dispatch('addFilterTag', job.level)}>{job.level}</p>
 				{#each job.languages as tag}
