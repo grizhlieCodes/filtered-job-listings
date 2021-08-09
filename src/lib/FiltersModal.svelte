@@ -92,19 +92,27 @@
 
 	section.filters-modal {
 		position: fixed;
-		top: 50%;
+		top: 7.5rem;
 		left: 50%;
-		transform: translate(-50%, -50%);
+		transform: translate(-50%, 0);
 		max-height: 80vh;
-		max-width: 80%;
+		max-width: 90%;
 		width: 100%;
-		background: white;
+		background: rgb(255, 255, 255);
 		padding: 3rem;
 		@include flex(column nowrap, start, start);
 		gap: 3rem;
 		border-radius: 0.5rem;
 		z-index: 2;
 		overflow-y: scroll;
+
+		@include mq(tablet){
+			top: 15rem;
+		}
+
+		@include mq(sdesktop){
+			max-width: 100rem;
+		}
 	}
 
 	button.addition-tag {
@@ -168,6 +176,9 @@
 
 	.search-container {
 		width: 100%;
+		border-bottom: solid 1px v(primary-light);
+		@include flex(row nowrap, space-between, center);
+
 	}
 
 	.search-container__input {
@@ -178,7 +189,25 @@
 		border: none;
 		font-size: 1.5rem;
 		font-weight: 700;
-		border-bottom: solid 1px v(primary-light);
+	}
+
+	.search-container button.badge {
+		padding: 0.8rem 1.2rem;
+		background: rgb(243, 243, 243);
+		font-size: 1.4rem;
+		border-radius: 1.5rem;
+		cursor: pointer;
+		font-weight: 600;
+		color: rgb(170, 170, 170);
+		border: 1px solid rgb(221, 221, 221);
+		transition: border 250ms, color 250ms, background 250ms;
+
+
+		&:hover {
+			background: v(primary);
+			color: white;
+			border: 1px solid primary;
+		}
 	}
 </style>
 
@@ -195,6 +224,7 @@
 				class="search-container__input"
 				placeholder="🔍 Search Filters ({opSystemText} + F)"
 				bind:value={filterSearch} />
+			<button class="badge" on:click={() => dispatch('closeModal')}>Esc</button>
 		</div>
 
 		{#each filteredTags as tag, index (tag)}
