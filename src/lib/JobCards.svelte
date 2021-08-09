@@ -136,6 +136,7 @@
 
 	//CENTER
 	.job-info__center .job-info__center-title {
+		font-weight: 700;
 		line-height: 2.4rem;
 		font-size: 1.5rem;
 		color: v(dark);
@@ -214,7 +215,7 @@
 					{/if}
 				</div>
 				<div class="job-info__center">
-					<h3 class="job-info__center-title">{job.position}</h3>
+					<a href="/{job.company.toLowerCase()}" class="job-info__center-title">{job.position}</a>
 				</div>
 				<div class="job-info__bottom">
 					<p class="bottom__posted-at">{job.postedAt}</p>
