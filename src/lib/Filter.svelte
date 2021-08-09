@@ -4,7 +4,7 @@
 	import capitalise from '$lib/helpers/capitaliseFirstLetter.js';
 	import FilterModal from '$lib/FiltersModal.svelte';
 	const dispatch = createEventDispatcher();
-
+	import opSystem from '$lib/stores/opSystem.js'
 	import { slide, fly } from 'svelte/transition';
 
 	const removeFilterTag = (filter) => {
@@ -18,8 +18,9 @@
 	const handleKeydown = (e) => {
 		keysPressed[e.key] = true;
 		if (e.key === 'Enter') addFilterTag(e);
-
-		if (keysPressed['Alt'] && e.key === 's') {
+		let controlOrCommand = keysPressed['Control']|| keysPressed['Meta']
+		if (controlOrCommand && e.key === 's') {
+			e.preventDefault()
 			filterActive = !filterActive;
 		}
 
@@ -221,12 +222,6 @@
 
 <svelte:window on:keydown={handleKeydown} on:keyup={handleKeyup} />
 
-<!-- Add an event listener 
-        when user is actively w ithin input and clicks enter -> dispatch an event
-        with the input value attached to add to the 
-
--->
-
 <section class="filter">
 
 	{#each selectedFilters as filter}
@@ -243,7 +238,11 @@
 
 	<button type="button" class="filter-button" on:click={() => (filterActive = !filterActive)}>
 		Search for filters
-		<span>Alt + S</span>
+		{#if $opSystem === 'windows'}
+			 <span>Ctrl + S</span>
+		{:else if $opSystem === 'macintosh'}
+			<span>Cmd + S</span>
+		{/if}
 	</button>
 	<button type="button" class="clear-button" on:click={() => dispatch('removeFilters')}>
 		Clear

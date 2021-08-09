@@ -1,7 +1,7 @@
 <script>
 	import { fly, slide, fade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { createEventDispatcher, onMount, getContext } from 'svelte';
 	import { quintOut } from 'svelte/easing';
 	import { crossfade } from 'svelte/transition';
 	import Filter from './Filter.svelte';
@@ -81,6 +81,8 @@
 		let firstFilterOption = document.querySelector('.addition-tag')
 		firstFilterOption.focus()
 	})
+
+
 </script>
 
 <style lang="scss">
