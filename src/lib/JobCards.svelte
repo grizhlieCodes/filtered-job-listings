@@ -215,7 +215,7 @@
 					{/if}
 				</div>
 				<div class="job-info__center">
-					<a href="/{job.company.toLowerCase()}" class="job-info__center-title">{job.position}</a>
+					<a href="/{job.link}" class="job-info__center-title">{job.position}</a>
 				</div>
 				<div class="job-info__bottom">
 					<p class="bottom__posted-at">{job.postedAt}</p>
