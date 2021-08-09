@@ -83,6 +83,7 @@
 		border-radius: 0.4rem;
 		overflow: hidden;
 		flex: 1 0 auto;
+		max-width: 20rem;
 		justify-content: space-between;
 	}
 
