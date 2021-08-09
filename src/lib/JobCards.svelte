@@ -37,29 +37,32 @@
 		@include flex(column nowrap, start, center);
 		gap: 4rem;
 
-        @include mq(tablet){
-            gap: 2.4rem;
-        }
+		@include mq(tablet) {
+			gap: 2.4rem;
+		}
 	}
 	article.job-card {
 		width: 100%;
-        max-width: 111rem;
+		max-width: 111rem;
 		position: relative;
 		@include flex(column nowrap, start, start);
 		background: white;
-		border-left: 5px solid v(primary);
 		border-radius: 0.5rem;
 		padding: 3.2rem 1.9rem 2.4rem;
 		gap: 1.6rem;
 		box-shadow: 0px 15px 20px -5px rgba(13, 113, 130, 0.15);
 
-        &:focus {
-            background: red;
-        }
+		&:focus {
+			background: red;
+		}
+
+		&.featured {
+			border-left: 5px solid v(primary);
+		}
 
 		@include mq(tablet) {
 			@include eflex(row nowrap, start, center);
-            gap: 2.4rem;
+			gap: 2.4rem;
 		}
 	}
 
@@ -77,15 +80,15 @@
 			height: 100%;
 		}
 
-        @include mq(tablet){
-            position: static;
-            width: 8.8rem;
-            height: 8.8rem;
-            left: unset;
-            top: unset;
-            transform: unset;
-            flex: 0 0 auto;
-        }
+		@include mq(tablet) {
+			position: static;
+			width: 8.8rem;
+			height: 8.8rem;
+			left: unset;
+			top: unset;
+			transform: unset;
+			flex: 0 0 auto;
+		}
 	}
 
 	//JOB INFO
@@ -96,11 +99,11 @@
 		padding-bottom: 1.7rem;
 		border-bottom: 1px solid #b7c4c4;
 
-        @include mq(tablet){
-            width: auto;
-            border-bottom: none;
-            padding-bottom: 0;
-        }
+		@include mq(tablet) {
+			width: auto;
+			border-bottom: none;
+			padding-bottom: 0;
+		}
 	}
 
 	.job-info__top {
@@ -161,12 +164,12 @@
 	.job-card .tags {
 		@include flex(row wrap, start, center);
 		gap: 1.6rem;
-        flex: 1;
-        justify-content: flex-end;
+		flex: 1;
+		justify-content: flex-end;
 
-        @include mq(tablet){
-            justify-self: end;
-        }
+		@include mq(tablet) {
+			justify-self: end;
+		}
 		.tag {
 			font-style: normal;
 			font-weight: bold;
@@ -180,9 +183,9 @@
 			cursor: pointer;
 			transition: color 250ms, background 250ms;
 
-            @include mq(tablet) {
-                flex: 0;
-            }
+			@include mq(tablet) {
+				flex: 0;
+			}
 
 			&:hover {
 				color: v(white);
@@ -198,7 +201,8 @@
 			class="job-card"
 			animate:flip={{ duration: 250 }}
 			in:receive={{ key: index }}
-			out:send={{ key: index }}>
+			out:send={{ key: index }}
+			class:featured={job.featured}>
 
 			<div class="job-card__image-container">
 				<img src="assets/images/{job.logo}" alt="" class="job-card__image" />
