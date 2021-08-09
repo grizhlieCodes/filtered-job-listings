@@ -7,42 +7,31 @@
 	--dark: #2b3939;
 	--white: white;
 	--light-gray: #7c8f8f;
-	--selected-tag: #EFF6F6;
+	--selected-tag: #eff6f6;
 	font-family: 'Spartan', sans-serif;
 }
 
-h3.org-name {
-	font-style: normal;
-	font-weight: bold;
-	font-size: 1.3rem;
-	line-height: 1.5rem;
-	color: var(--primary);
-}
-
-h2.job-title {
-	font-style: normal;
-	font-weight: bold;
-	font-size: 1.5rem;
-	line-height: 2.4rem;
-	color: var(--dark);
-}
-
-p.job-base-info {
-	font-style: normal;
-	font-weight: 500;
-	font-size: 1.3rem;
-	line-height: 2.4rem;
-	letter-spacing: -0.01rem;
-	color: var(--light-gray);
-}
-
 body {
-    width: 100%;
-    min-height: 100vh;
-    background: var(--bg);
+	width: 100%;
+	min-height: 100vh;
+	background: var(--bg);
 }
 
 #svelte {
-    width: 100%;
-    height: auto;
+	width: 100%;
+	height: auto;
+}
+
+::-webkit-scrollbar {
+	width: 0.8rem;
+}
+
+::-webkit-scrollbar-track {
+	box-shadow: none;
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--primary);
+	outline: none;
+	border-radius: 8px;
 }

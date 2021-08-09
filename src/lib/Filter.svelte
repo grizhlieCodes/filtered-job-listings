@@ -67,6 +67,7 @@
 		position: relative;
 		max-width: 111rem;
 		justify-self: center;
+		box-shadow: 0px 15px 20px -5px rgba(13, 113, 130, 0.15);
 	}
 
 	article.selected-tag {

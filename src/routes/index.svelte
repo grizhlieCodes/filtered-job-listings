@@ -98,7 +98,11 @@
 		width: 100%;
 		height: auto;
 		@include flex(column nowrap, start, center);
-		gap: 3.2rem;
+		gap: calc(3.2rem + 2.4rem);
+
+		@include mq(tablet){
+			gap: 4rem;
+		}
 	}
 </style>
 

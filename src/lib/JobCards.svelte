@@ -38,7 +38,7 @@
 		gap: 4rem;
 
         @include mq(tablet){
-            // padding: 0;
+            gap: 2.4rem;
         }
 	}
 	article.job-card {
@@ -51,6 +51,7 @@
 		border-radius: 0.5rem;
 		padding: 3.2rem 1.9rem 2.4rem;
 		gap: 1.6rem;
+		box-shadow: 0px 15px 20px -5px rgba(13, 113, 130, 0.15);
 
         &:focus {
             background: red;
