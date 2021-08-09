@@ -5,7 +5,10 @@
 	import { quintOut } from 'svelte/easing';
 	import { crossfade } from 'svelte/transition';
 	import Filter from './Filter.svelte';
+	import opSystem from '$lib/stores/opSystem.js';
 	const dispatch = createEventDispatcher();
+
+	$: opSystemText = $opSystem === 'windows' ? 'Ctrl' : 'Cmd';
 
 	const [send, receive] = crossfade({
 		duration: (d) => Math.sqrt(d * 200),
@@ -29,10 +32,10 @@
 
 	let selectedTagPosition = 0;
 
-	let keysPressed = {}
+	let keysPressed = {};
 
 	const handleKeydown = (e) => {
-		keysPressed[e.key] = true
+		keysPressed[e.key] = true;
 		let key = e.key;
 		let filters = document.querySelectorAll('.addition-tag');
 		let next = key === 'ArrowRight' || key === 'ArrowDown';
@@ -59,17 +62,18 @@
 		}
 
 		//if Alt: true && e.key === 'a'
-		if(keysPressed['Alt'] && e.key == 'a'){
-			console.log(keysPressed)
-			selectedTagPosition = -1
-			const filterSearchInput = document.querySelector('.search-container__input')
-			filterSearchInput.focus()
+		const controlOrCommand = keysPressed['Control'] || keysPressed['Meta'];
+		if (controlOrCommand && e.key == 'f') {
+			e.preventDefault();
+			selectedTagPosition = -1;
+			const filterSearchInput = document.querySelector('.search-container__input');
+			filterSearchInput.focus();
 		}
 	};
 
 	const handleKeyup = (e) => {
-
-	}
+		keysPressed[e.key] = false;
+	};
 
 	let filterSearch = '';
 
@@ -78,11 +82,9 @@
 	});
 
 	onMount(() => {
-		let firstFilterOption = document.querySelector('.addition-tag')
-		firstFilterOption.focus()
-	})
-
-
+		let firstFilterOption = document.querySelector('.addition-tag');
+		firstFilterOption.focus();
+	});
 </script>
 
 <style lang="scss">
@@ -180,7 +182,7 @@
 	}
 </style>
 
-<svelte:window on:keydown={handleKeydown} on:keyup={handleKeyup}/>
+<svelte:window on:keydown={handleKeydown} on:keyup={handleKeyup} />
 
 <!-- REFACTOR TO MAKE COMPONENTS -->
 
@@ -191,7 +193,7 @@
 			<input
 				type="text"
 				class="search-container__input"
-				placeholder="🔍 Search Filters (Alt + A)"
+				placeholder="🔍 Search Filters ({opSystemText} + F)"
 				bind:value={filterSearch} />
 		</div>
 
@@ -204,8 +206,7 @@
 				out:send={{ key: index }}
 				data-index={index}
 				data-tag={tag}
-				on:click={() => dispatch('addTag', tag)}
-				>
+				on:click={() => dispatch('addTag', tag)}>
 				{tag}
 			</button>
 		{/each}
